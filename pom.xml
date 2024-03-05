@@ -8,7 +8,6 @@
 	<groupId>com.amweb</groupId>
 	<artifactId>restassured-training</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
 	<name>restassured-training</name>
 	<!-- FIXME change it to the project's website -->
 	<url>http://www.example.com</url>
@@ -67,8 +66,6 @@
 			<artifactId>json</artifactId>
 			<version>20231013</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>
