@@ -28,6 +28,9 @@ public class HttpRequests {
 		HashMap<String, String> data = new HashMap<String, String>();
 		data.put("name", "shaan");
 		data.put("job", "Aurangabad");
+		data.put("jobs", null);
+		data.put(null, "abc");
+		data.put(null, "def");
 		id = given().contentType("application/json")
 				.when().post("https://reqres.in/api/users").jsonPath().getInt("id");
 
