@@ -24,7 +24,7 @@ public class DiffWaysToCreatePostRequestBody {
 
 	// 1) Post request body using Hashmap
 
-	@Test(priority = 1)
+//	@Test(priority = 1)
 	void testPostusingHashMap() {
 
 		HashMap data = new HashMap();
@@ -36,14 +36,13 @@ public class DiffWaysToCreatePostRequestBody {
 		String courseArr[] = { "C", "C++" };
 		data.put("courses", courseArr);
 
-		given().contentType("application/json").body(data)
-				.when().post("http://localhost:3000/students")
-				.then().statusCode(201).body("name", equalTo("Scott")).body("location", equalTo("France"))
+		given().contentType("application/json").body(data).when().post("http://localhost:3000/students").then()
+				.statusCode(201).body("name", equalTo("Scott")).body("location", equalTo("France"))
 				.body("phone", equalTo("123456")).body("courses[0]", equalTo("C")).body("courses[1]", equalTo("C++"))
-				.header("Content-Type", "application/json; charset=utf-8").log().all();
+				.header("Content-Type", "application/json").log().all();
 	}
 
-	// 2) Post request body using org.json libray
+	// 2) Post request body using org.json library
 	// @Test(priority=1)
 	void testPostusingJsonLibrary() {
 		JSONObject data = new JSONObject();
@@ -66,23 +65,16 @@ public class DiffWaysToCreatePostRequestBody {
 	}
 
 	// 3) Post request body using POJO Class
-
-	// @Test(priority=1)
+	// @Test(priority = 1)
 	void testPostusingPOJO() {
-		// Pojo_PostRequest data=new Pojo_PostRequest();
-
-		// data.setName("Scott");
-		// data.setLocation("France");
-		// data.setPhone("123456");
+		Pojo_PostRequest data = new Pojo_PostRequest();
+		data.setName("Scott");
+		data.setLocation("France");
+		data.setPhone("123456");
 		String coursesArr[] = { "C", "C++" };
-		// data.setCourses(coursesArr);
-
-		given().contentType("application/json")
-				// .body(data)
-
-				.when().post("http://localhost:3000/students")
-
-				.then().statusCode(201).body("name", equalTo("Scott")).body("location", equalTo("France"))
+		data.setCourses(coursesArr);
+		given().contentType("application/json").body(data).when().post("http://localhost:3000/students").then()
+				.statusCode(201).body("name", equalTo("Scott")).body("location", equalTo("France"))
 				.body("phone", equalTo("123456")).body("courses[0]", equalTo("C")).body("courses[1]", equalTo("C++"))
 				.log().all();
 
@@ -90,7 +82,7 @@ public class DiffWaysToCreatePostRequestBody {
 
 	// 4) Post request body using External JSON File
 
-	// @Test(priority=1)
+	@Test(priority = 1)
 	void testPostusingExternalJsonFile() throws FileNotFoundException {
 
 		File f = new File(".\\body.json");
@@ -105,14 +97,14 @@ public class DiffWaysToCreatePostRequestBody {
 
 				.when().post("http://localhost:3000/students")
 
-				.then().statusCode(201).body("name", equalTo("Scott")).body("location", equalTo("France"))
-				.body("phone", equalTo("123456")).body("courses[0]", equalTo("C")).body("courses[1]", equalTo("C++"))
-				.header("Content-Type", "application/json; charset=utf-8").log().all();
+				.then().statusCode(201).body("name", equalTo("David")).body("location", equalTo("Australia"))
+				.body("phone", equalTo("123456")).body("courses[0]", equalTo("Java")).body("courses[1]", equalTo("Javascript"))
+				.header("Content-Type", "application/json").log().all();
 
 	}
 
 	// deleting student record
-	//@Test(priority = 2)
+	// @Test(priority = 2)
 	void testDelete() {
 		given()
 
