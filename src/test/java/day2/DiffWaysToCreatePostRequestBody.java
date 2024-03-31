@@ -42,8 +42,8 @@ public class DiffWaysToCreatePostRequestBody {
 				.header("Content-Type", "application/json").log().all();
 	}
 
-	// 2) Post request body using org.json library
-	// @Test(priority=1)
+	// 2) Post request body using org.json library 
+	// @Test(priority=1)  
 	void testPostusingJsonLibrary() {
 		JSONObject data = new JSONObject();
 
@@ -61,7 +61,6 @@ public class DiffWaysToCreatePostRequestBody {
 				.then().statusCode(201).body("name", equalTo("Scott")).body("location", equalTo("France"))
 				.body("phone", equalTo("123456")).body("courses[0]", equalTo("C")).body("courses[1]", equalTo("C++"))
 				.header("Content-Type", "application/json").log().all();
-
 	}
 
 	// 3) Post request body using POJO Class
@@ -73,10 +72,14 @@ public class DiffWaysToCreatePostRequestBody {
 		data.setPhone("123456");
 		String coursesArr[] = { "C", "C++" };
 		data.setCourses(coursesArr);
-		given().contentType("application/json").body(data).when().post("http://localhost:3000/students").then()
-				.statusCode(201).body("name", equalTo("Scott")).body("location", equalTo("France"))
-				.body("phone", equalTo("123456")).body("courses[0]", equalTo("C")).body("courses[1]", equalTo("C++"))
-				.log().all();
+		
+		given().contentType("application/json").body(data)
+		.when()
+			.post("http://localhost:3000/students")
+		.then()
+			.statusCode(201).body("name", equalTo("Scott")).body("location", equalTo("France"))
+		.body("phone", equalTo("123456")).body("courses[0]", equalTo("C")).body("courses[1]", equalTo("C++"))
+		.log().all();
 
 	}
 
@@ -100,18 +103,13 @@ public class DiffWaysToCreatePostRequestBody {
 				.then().statusCode(201).body("name", equalTo("David")).body("location", equalTo("Australia"))
 				.body("phone", equalTo("123456")).body("courses[0]", equalTo("Java")).body("courses[1]", equalTo("Javascript"))
 				.header("Content-Type", "application/json").log().all();
-
 	}
 
 	// deleting student record
 	// @Test(priority = 2)
 	void testDelete() {
 		given()
-
 				.when().delete("http://localhost:3000/students/4")
-
 				.then().statusCode(200);
-
 	}
-
 }
