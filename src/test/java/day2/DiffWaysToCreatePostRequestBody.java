@@ -21,10 +21,9 @@ Different ways to create POST request body
 */
 
 public class DiffWaysToCreatePostRequestBody {
-
 	// 1) Post request body using Hashmap
 
-//	@Test(priority = 1)
+	//@Test(priority = 1)
 	void testPostusingHashMap() {
 
 		HashMap data = new HashMap();
@@ -36,32 +35,28 @@ public class DiffWaysToCreatePostRequestBody {
 		String courseArr[] = { "C", "C++" };
 		data.put("courses", courseArr);
 
-		given().contentType("application/json").body(data).when().post("http://localhost:3000/students").then()
-				.statusCode(201).body("name", equalTo("Scott")).body("location", equalTo("France"))
-				.body("phone", equalTo("123456")).body("courses[0]", equalTo("C")).body("courses[1]", equalTo("C++"))
-				.header("Content-Type", "application/json").log().all();
+		given().contentType("application/json").body(data)
+			.when().post("http://localhost:3000/students")
+				.then()
+					.statusCode(201).body("name", equalTo("Scott")).body("location", equalTo("France"))
+						.body("phone", equalTo("123456")).body("courses[0]", equalTo("C")).body("courses[1]", equalTo("C++"))
+							.header("Content-Type", "application/json").log().all();
 	}
 
 	// 2) Post request body using org.json library
 	// @Test(priority=1)
 	void testPostusingJsonLibrary() {
 		JSONObject data = new JSONObject();
-
 		data.put("name", "Scott");
 		data.put("location", "France");
 		data.put("phone", "123456");
-
 		String coursesArr[] = { "C", "C++" };
 		data.put("courses", coursesArr);
-
 		given().contentType("application/json").body(data.toString())
-
 				.when().post("http://localhost:3000/students")
-
 				.then().statusCode(201).body("name", equalTo("Scott")).body("location", equalTo("France"))
 				.body("phone", equalTo("123456")).body("courses[0]", equalTo("C")).body("courses[1]", equalTo("C++"))
 				.header("Content-Type", "application/json").log().all();
-
 	}
 
 	// 3) Post request body using POJO Class
@@ -77,11 +72,9 @@ public class DiffWaysToCreatePostRequestBody {
 				.statusCode(201).body("name", equalTo("Scott")).body("location", equalTo("France"))
 				.body("phone", equalTo("123456")).body("courses[0]", equalTo("C")).body("courses[1]", equalTo("C++"))
 				.log().all();
-
 	}
 
 	// 4) Post request body using External JSON File
-
 	@Test(priority = 1)
 	void testPostusingExternalJsonFile() throws FileNotFoundException {
 
