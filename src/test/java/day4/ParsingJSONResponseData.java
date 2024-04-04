@@ -16,11 +16,8 @@ import org.json.JSONObject;
 
 public class ParsingJSONResponseData {
 
-<<<<<<< HEAD
-	@Test(priority=1)
-=======
+
 	//@Test(priority=1)
->>>>>>> 7566d83c93daa3e1e2bb37aaded8485c47cc3866
 	void testJsonResponse()
 	{
 		//Appoach1
@@ -56,11 +53,9 @@ public class ParsingJSONResponseData {
 	}
 	
 	
-<<<<<<< HEAD
+
 	//@Test(priority=2)
-=======
-	@Test(priority=2)
->>>>>>> 7566d83c93daa3e1e2bb37aaded8485c47cc3866
+
 	void testJsonResponseBodyData()
 	{	
 		Response res=
